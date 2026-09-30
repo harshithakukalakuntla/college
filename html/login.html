@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | CampusPulse</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; background: linear-gradient(135deg, #EEF2FF 0%, #FAF5FF 100%);">
+
+  <!-- Top Demo Bar -->
+  <div class="demo-role-banner" id="demo-role-banner"></div>
+
+  <!-- Navbar -->
+  <header class="site-navbar" id="main-navbar"></header>
+
+  <!-- Login Main Container -->
+  <main class="main-content" style="display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+    <div style="max-width: 440px; width: 100%; background: var(--bg-surface); padding: 2.5rem; border-radius: var(--radius-xl); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg);">
+      
+      <div class="text-center" style="margin-bottom: 2rem;">
+        <span style="font-size: 2.5rem; display: inline-block; margin-bottom: 0.5rem;">🎓</span>
+        <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Welcome Back</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Sign in to register for events and manage your passes</p>
+      </div>
+
+      <!-- Quick Demo Account Fillers -->
+      <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px dashed var(--border-color);">
+        <small style="display: block; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; font-size: 0.725rem;">
+          ⚡ Quick Demo Credentials:
+        </small>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn btn-xs btn-outline-primary" style="flex: 1;" onclick="fillDemo('student')">
+            👤 Student Demo
+          </button>
+          <button type="button" class="btn btn-xs btn-outline-primary" style="flex: 1;" onclick="fillDemo('admin')">
+            🛡️ Admin Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">College Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@college.edu" required />
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+            <label class="form-label" for="login-password" style="margin-bottom: 0;">Password</label>
+            <a href="javascript:void(0)" onclick="window.main.showToast('Demo passwords: student or admin', 'info')" style="font-size: 0.775rem;">Forgot?</a>
+          </div>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-login-submit" style="margin-top: 1.5rem;">
+          Sign In &rarr;
+        </button>
+      </form>
+
+      <div class="text-center" style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-muted);">
+        Don't have an account? <a href="register.html" style="font-weight: 600;">Create Student Account</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    function fillDemo(role) {
+      if (role === 'admin') {
+        document.getElementById('login-email').value = 'admin@college.edu';
+        document.getElementById('login-password').value = 'admin';
+      } else {
+        document.getElementById('login-email').value = 'student@college.edu';
+        document.getElementById('login-password').value = 'student';
+      }
+      window.main.showToast(`Pre-filled credentials for ${role}`, 'info');
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const btn = document.getElementById('btn-login-submit');
+
+      btn.disabled = true;
+      btn.textContent = 'Verifying credentials...';
+
+      try {
+        const res = await window.auth.login(email, password);
+        window.main.showToast(`Welcome back, ${res.user.name}!`, 'success');
+
+        const redirect = sessionStorage.getItem('redirect_after_login');
+        sessionStorage.removeItem('redirect_after_login');
+
+        setTimeout(() => {
+          if (redirect) {
+            window.location.href = redirect;
+          } else if (res.user.role === 'admin') {
+            window.location.href = 'admin-dashboard.html';
+          } else {
+            window.location.href = 'student-dashboard.html';
+          }
+        }, 500);
+      } catch (err) {
+        window.main.showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.textContent = 'Sign In →';
+      }
+    });
+  </script>
+</body>
+</html>

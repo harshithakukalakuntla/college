@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Details | CampusPulse</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+
+  <!-- Top Demo Bar -->
+  <div class="demo-role-banner" id="demo-role-banner"></div>
+
+  <!-- Navbar -->
+  <header class="site-navbar" id="main-navbar"></header>
+
+  <!-- Event Details Container -->
+  <main class="main-content section-spacer">
+    <div class="container" id="event-details-content">
+      <!-- Loaded dynamically by js/event-details.js -->
+      <div class="empty-state">
+        <span class="empty-state-icon">⏳</span>
+        <h3>Loading event details...</h3>
+      </div>
+    </div>
+  </main>
+
+  <!-- Registration Confirmation Modal -->
+  <div class="modal-overlay" id="register-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Confirm Event Registration</h3>
+        <button class="modal-close-btn" data-modal-close onclick="window.main.closeModal('register-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="register-modal-form-content">
+        <!-- Filled by js/event-details.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 CampusPulse Event Management System.</div>
+        <div>All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/event-details.js"></script>
+</body>
+</html>

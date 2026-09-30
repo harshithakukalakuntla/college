@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Registered Events | CampusPulse</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+
+  <!-- Top Demo Bar -->
+  <div class="demo-role-banner" id="demo-role-banner"></div>
+
+  <!-- Navbar -->
+  <header class="site-navbar" id="main-navbar"></header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-user-card" id="sidebar-user-card">
+        <!-- Loaded by js/my-events.js -->
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-title">Main Portal</li>
+        <li>
+          <a href="student-dashboard.html" class="sidebar-link">
+            <span class="sidebar-icon">📊</span> Overview
+          </a>
+        </li>
+        <li>
+          <a href="my-events.html" class="sidebar-link active">
+            <span class="sidebar-icon">🎟️</span> My Registered Events
+          </a>
+        </li>
+        <li>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-icon">👤</span> My Profile
+          </a>
+        </li>
+
+        <li class="sidebar-menu-title" style="margin-top: 1rem;">Discover</li>
+        <li>
+          <a href="events.html" class="sidebar-link">
+            <span class="sidebar-icon">🔍</span> Explore All Events
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline-danger btn-block btn-sm" onclick="window.auth.logout()">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      
+      <div class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>My Registered Events</h1>
+          <p class="text-muted">Digital admission passes and verification QR codes for registered university events.</p>
+        </div>
+        <div class="dashboard-actions">
+          <span class="badge badge-primary" id="my-events-count" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+            Loading tickets...
+          </span>
+          <a href="events.html" class="btn btn-primary btn-sm">
+            ➕ Register More
+          </a>
+        </div>
+      </div>
+
+      <!-- Tickets Container -->
+      <div id="my-events-container">
+        <!-- Rendered by js/my-events.js -->
+        <div class="empty-state">
+          <span class="empty-state-icon">⏳</span>
+          <h3>Loading your event passes...</h3>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/my-events.js"></script>
+</body>
+</html>

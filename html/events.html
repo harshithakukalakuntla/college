@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Events | CampusPulse</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+
+  <!-- Top Demo Bar -->
+  <div class="demo-role-banner" id="demo-role-banner"></div>
+
+  <!-- Main Navbar -->
+  <header class="site-navbar" id="main-navbar"></header>
+
+  <!-- Page Header -->
+  <div style="background: linear-gradient(180deg, #F5F3FF 0%, #F8FAFC 100%); padding: 3rem 0 2rem 0; border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 2.2rem; margin-bottom: 0.35rem;">Campus Events Schedule</h1>
+          <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0;">
+            Browse, filter, and register for upcoming competitions, hackathons, and cultural festivities.
+          </p>
+        </div>
+        <span class="badge badge-primary" id="events-count-badge" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+          Loading events...
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <section style="padding: 1.75rem 0; background: var(--bg-surface); border-bottom: 1px solid var(--border-color); position: sticky; top: 72px; z-index: 100;">
+    <div class="container">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        
+        <!-- Search bar + Sort -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div class="input-icon-wrap" style="flex: 1; min-width: 260px;">
+            <span class="input-icon">🔍</span>
+            <input type="text" id="events-search-input" class="form-control" placeholder="Search by title, organizer, keywords, or venue..." />
+          </div>
+
+          <div style="min-width: 180px;">
+            <select id="events-sort-select" class="form-select">
+              <option value="date-asc">Date: Upcoming First</option>
+              <option value="date-desc">Date: Furthest First</option>
+              <option value="seats-desc">Most Popular (Seats)</option>
+              <option value="title-asc">Title: Alphabetical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="filter-chips">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-light); margin-right: 0.25rem;">Category:</span>
+          <button class="filter-chip active" data-category="all">All Events</button>
+          <button class="filter-chip" data-category="technology">Technology</button>
+          <button class="filter-chip" data-category="cultural">Cultural</button>
+          <button class="filter-chip" data-category="workshop">Workshops</button>
+          <button class="filter-chip" data-category="seminar">Seminars</button>
+          <button class="filter-chip" data-category="sports">Sports</button>
+          <button class="filter-chip" data-category="career">Career</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Listing Grid -->
+  <main class="main-content section-spacer">
+    <div class="container">
+      <div class="grid grid-cols-3" id="events-grid">
+        <!-- Rendered dynamically by js/events.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 CampusPulse Event Management System.</div>
+        <div>All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/events.js"></script>
+</body>
+</html>

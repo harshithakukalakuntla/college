@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registrations | CampusPulse</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body class="dashboard-page">
+
+  <!-- Top Demo Bar -->
+  <div class="demo-role-banner" id="demo-role-banner"></div>
+
+  <!-- Navbar -->
+  <header class="site-navbar" id="main-navbar"></header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+    
+    <!-- Admin Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-user-card" id="sidebar-user-card">
+        <!-- Rendered by js/registrations.js -->
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-title">Admin Management</li>
+        <li>
+          <a href="admin-dashboard.html" class="sidebar-link">
+            <span class="sidebar-icon">📊</span> Overview & Stats
+          </a>
+        </li>
+        <li>
+          <a href="create-event.html" class="sidebar-link">
+            <span class="sidebar-icon">➕</span> Create New Event
+          </a>
+        </li>
+        <li>
+          <a href="registrations.html" class="sidebar-link active">
+            <span class="sidebar-icon">👥</span> Student Registrations
+          </a>
+        </li>
+
+        <li class="sidebar-menu-title" style="margin-top: 1rem;">Public Navigation</li>
+        <li>
+          <a href="events.html" class="sidebar-link">
+            <span class="sidebar-icon">🔍</span> Explore Live Events
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline-danger btn-block btn-sm" onclick="window.auth.logout()">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      
+      <div class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>Student Registrations & Gate Attendance</h1>
+          <p class="text-muted">Manage all student enrollments, verify ticket passes, update attendance, and export rosters.</p>
+        </div>
+        <div class="dashboard-actions">
+          <button class="btn btn-outline-primary btn-sm" onclick="exportRegistrationsCsv()">
+            📥 Export to CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters & Search Controls Card -->
+      <div style="background: var(--bg-surface); padding: 1.5rem; border-radius: var(--radius-xl); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 1.75rem;">
+        
+        <div style="display: grid; grid-template-columns: 2fr 1.2fr 1fr; gap: 1rem; align-items: center;">
+          
+          <div class="input-icon-wrap">
+            <span class="input-icon">🔍</span>
+            <input type="text" id="reg-search-input" class="form-control" placeholder="Search student name, email, roll no, or ticket code..." />
+          </div>
+
+          <div>
+            <select id="reg-filter-event" class="form-select">
+              <option value="all">All Events (Entire Campus)</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="reg-filter-status" class="form-select">
+              <option value="all">All Statuses</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Pending">Pending</option>
+              <option value="Attended">Attended</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Registrations Data Table -->
+      <div style="background: var(--bg-surface); padding: 1.75rem; border-radius: var(--radius-xl); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; margin: 0;">Enrolled Students</h3>
+          <span class="badge badge-primary" id="reg-count-badge">Loading registrations...</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ticket Code</th>
+                <th>Student Information</th>
+                <th>Roll No & Dept</th>
+                <th>Event Title</th>
+                <th>Registered Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="registrations-tbody">
+              <!-- Rendered by js/registrations.js -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/registrations.js"></script>
+</body>
+</html>
